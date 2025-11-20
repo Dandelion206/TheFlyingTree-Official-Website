@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [用戶自定義] 修改瀏覽器標籤頁標題 -->
+    <title>TheFlyingTree | 滾動的天空 & 跳舞的線</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* [修改] 引入 Quicksand 圓潤字體 */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@400;700&display=swap');
+
+        body {
+            /* [修改] 應用圓潤字體 */
+            font-family: 'Quicksand', sans-serif;
+            background-color: #050b14;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .font-gaming {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .font-sans {
+            font-family:"思源黑體", 'Noto Sans TC', sans-serif;
+        }
+
+        /* --- 星空背景特效 --- */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+        
+        .star-layer {
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            box-shadow: 100px 200px #fff, 300px 600px #fff, 500px 100px #fff;
+            animation: twinkle 4s infinite;
+        }
+        .star-layer:after {
+            content: " ";
+            position: absolute;
+            top: 2000px;
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            box-shadow: 100px 200px #fff, 300px 600px #fff, 500px 100px #fff;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; transform: translateY(-50px); }
+        }
+
+        /* --- 鋼琴鍵盤裝飾線條 --- */
+        .piano-border {
+            height: 10px;
+            background-image: repeating-linear-gradient(
+                90deg,
+                #ffffff 0px,
+                #ffffff 18px,
+                #000000 18px,
+                #000000 20px
+            );
+            opacity: 0.8;
+        }
+
+        /* 霓虹光暈效果 - 通用 */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* [新增] 動漫角色呼吸動畫 */
+        .mascot-breath {
+            animation: breath 4s ease-in-out infinite;
+        }
+        @keyframes breath {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 滾動動畫類別 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating-note {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 星空背景層 -->
+    <div class="stars">
+        <div class="star-layer" style="animation-duration: 5s; box-shadow: 120px 340px #FFF, 560px 120px #FFF, 890px 670px #FFF;"></div>
+        <div class="star-layer" style="animation-duration: 8s; box-shadow: 420px 140px #FFF, 260px 820px #FFF, 690px 270px #FFF;"></div>
+    </div>
+
+    <!-- 頂部導航欄 (固定) -->
+    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <!-- [修改] Logo 顏色改為橙色與藍色漸變 -->
+                        <i class="fas fa-gamepad text-3xl text-cyan-400 mr-3 animate-pulse"></i>
+                    </div>
+                    <div>
+                        <span class="font-gaming text-2xl font-bold text-white tracking-wider">TheFlyingTree</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="首頁" data-en="Home">首頁</a>
+                    <!-- [修改] 連結懸停顏色改為橙色 -->
+                     <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
+                    <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
+                    <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>
+                    
+                    
+                    <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-en="Subscribe">訂閱頻道</a>
+                    
+                    <button id="lang-toggle" class="ml-4 border border-slate-600 px-3 py-1 rounded text-xs text-slate-300 hover:bg-slate-700">EN / 中</button>
+                </div>
+            </div>
+        </div>
+        <div class="piano-border"></div>
+    </nav>
+
+    <!-- Hero Section (首頁封面) -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="mb-4 text-amber-300 text-4xl flex justify-center gap-8 opacity-80">
+                <i class="fas fa-music floating-note" style="animation-delay: 0s;"></i>
+                <i class="fas fa-headphones floating-note" style="animation-delay: 1s;"></i>
+                <i class="fas fa-compact-disc floating-note" style="animation-delay: 0.5s;"></i>
+            </div>
+
+            <!-- [修改] 標題漸變色改為青色到藍色 -->
+            <h1 class="font-gaming text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-600 neon-text animate-pulse lang-text" data-zh="TheFlyingTree" data-en="TheFlyingTree">
+                TheFlyingTree
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-bold lang-text" 
+               data-zh="ACG鋼琴改編/扒譜" 
+               data-en="ACG Piano Arranger/Transcriber">
+                ACG鋼琴改編/扒譜
+            </p>
+            <!--
+            <p class="text-lg md:text-xl text-gray-400 mb-8 lang-text"
+               data-zh="Rolling Sky & Dancing Line 頂尖攻略"
+               data-en="Top tier guides for Rolling Sky & Dancing Line">
+                Rolling Sky & Dancing Line 頂尖攻略
+            </p>
+             -->
+            
+
+            <div class="flex justify-center gap-4">
+                <!-- [修改] 按鈕顏色改為橙色主題 -->
+                <a href="#rolling-sky" class="px-8 py-3 border-2 border-amber-500 text-amber-400 rounded-full hover:bg-amber-500/20 transition duration-300 font-gaming tracking-widest font-bold lang-text" data-zh="觀看影片" data-en="Watch Videos">
+                    觀看影片
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- [新增] 鋼琴影片專區 (藍色主題) -->
+    <section id="piano-zone" class="py-20 relative bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <!-- [新增] 藍色標題 -->
+                <h2 class="font-sans text-4xl font-bold text-blue-400 mb-4">PIANO COVERS</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="遊戲原聲帶鋼琴改編" data-en="Game OST Piano Covers">遊戲原聲帶鋼琴改編</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 鋼琴影片 1 -->
+                <a href="https://www.youtube.com/watch?v=St-gqciGTf0" target="_blank" rel="noopener" class="block">
+                     <div class="bg-slate-800/80 rounded-xl p-4 border-t-4 border-blue-500 hover:translate-y-2 transition duration-300 reveal cursor-pointer">
+                         <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                              <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                                     <img src="https://img.youtube.com/vi/St-gqciGTf0/maxresdefault.jpg" 
+                                         alt="Rolling Sky - Halloween"
+                                         class="w-full h-full object-cover transition duration-300 group-hover:brightness-75">
+
+                                 <!-- Play icon overlay -->
+                                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                     <i class="fas fa-play-circle text-7xl text-white opacity-0 
+                                             group-hover:opacity-100 transition duration-300 drop-shadow-2xl"></i>
+                                 </div>
+                             </div> 
+                         </div>
+                         <h3 class="text-lg font-bold text-white hover:text-blue-400 transition lang-text" 
+                             data-zh="拂曉 - 鋼琴改編" data-en="Proi Proi Piano Arrangement">
+                             拂曉 - 鋼琴改編
+                         </h3>
+                        <h4 class="mt-2 text-slate-400 text-sm lang-text" data-zh="崩壞：星穹鐵道EP" data-en="Honkai: Star Rail EP">崩壞:星穹鐵道EP</h4>
+                        <span class="text-xs font-bold text-amber-900 bg-amber-400 px-2 py-1 rounded-full uppercase">Hot</span>
+                     </div>
+                 </a>
+
+                <!-- 鋼琴影片 2 -->
+                <a href="https://www.youtube.com/watch?v=eQKDUYxWf58" target="_blank" rel="noopener" class="block">
+                     <div class="bg-slate-800/80 rounded-xl p-4 border-t-4 border-blue-500 hover:translate-y-2 transition duration-300 reveal cursor-pointer">
+                         <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                              <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                                     <img src="https://img.youtube.com/vi/eQKDUYxWf58/maxresdefault.jpg" 
+                                         alt="Rolling Sky - Halloween"
+                                         class="w-full h-full object-cover transition duration-300 group-hover:brightness-75">
+
+                                 <!-- Play icon overlay -->
+                                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                     <i class="fas fa-play-circle text-7xl text-white opacity-0 
+                                             group-hover:opacity-100 transition duration-300 drop-shadow-2xl"></i>
+                                 </div>
+                             </div> 
+                         </div>
+                         <h3 class="text-lg font-bold text-white hover:text-blue-400 transition lang-text" 
+                             data-zh="「終焉」×「End of All」 - 鋼琴改編" data-en="End of All Piano Arrangement">
+                             「終焉」×「End of All」 - 鋼琴改編
+                         </h3>
+                         <h4 class="mt-2 text-slate-400 text-sm lang-text" data-zh="原神" data-en="Genshin Impact">原神</h4>
+                     </div>
+                 </a>
+
+                <!-- 鋼琴影片 3 -->
+                 <a href="https://www.youtube.com/watch?v=MwxdfRdU8wY" target="_blank" rel="noopener" class="block">
+                     <div class="bg-slate-800/80 rounded-xl p-4 border-t-4 border-blue-500 hover:translate-y-2 transition duration-300 reveal cursor-pointer">
+                         <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                              <div class="aspect-video bg-black rounded-lg overflow-hidden relative mb-4">
+                                     <img src="https://img.youtube.com/vi/MwxdfRdU8wY/maxresdefault.jpg" 
+                                         alt="Rolling Sky - Halloween"
+                                         class="w-full h-full object-cover transition duration-300 group-hover:brightness-75">
+
+                                 <!-- Play icon overlay -->
+                                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                     <i class="fas fa-play-circle text-7xl text-white opacity-0 
+                                             group-hover:opacity-100 transition duration-300 drop-shadow-2xl"></i>
+                                 </div>
+                             </div> 
+                         </div>
+                         <h3 class="text-lg font-bold text-white hover:text-blue-400 transition lang-text" 
+                             data-zh="挪德卡萊主題曲 - 鋼琴改編" data-en="Nod-Krai Main Theme Piano Arrangement">
+                             挪德卡萊主題曲 - 鋼琴改編
+                         </h3>
+                         <h4 class="mt-2 text-slate-400 text-sm lang-text" data-zh="原神:空月之歌" data-en="Genshin Impact">原神：空月之歌</h4>
+                     </div>
+                 </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- [修改] 滾動的天空 區塊 (改成橙黃色主題) -->
+    <section id="rolling-sky" class="py-20 relative bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <!-- [修改] 文字顏色 orange-400 -->
+                <h2 class="font-sans text-4xl font-bold text-orange-400 mb-4">ROLLING SKY</h2>
+                <!-- [修改] 裝飾線顏色 orange-500 -->
+                <div class="h-1 w-20 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="挑戰 100% 完美通關與隱藏關卡" data-en="100% completion and hidden levels challenges">挑戰 100% 完美通關與隱藏關卡</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 影片卡片 1 -->
+                <!-- [修改] 邊框與陰影改為橙色系 (border-orange-500/30) -->
+                <div class="bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-orange-500/30 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition duration-300 reveal group cursor-pointer">
+                    <div class="relative aspect-video bg-black group-hover:opacity-90 transition">
+                        <div class="absolute inset-0 flex items-center justify-center bg-slate-800">
+                            <i class="fas fa-play-circle text-6xl text-orange-400/80 group-hover:scale-110 transition duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <!-- [修改] 標籤顏色 -->
+                        <span class="text-xs font-bold text-orange-900 bg-orange-400 px-2 py-1 rounded-full uppercase">New Upload</span>
+                        <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="沙漠遺跡 - 完美通關" data-en="Desert Ruins - Perfect Run">沙漠遺跡 - 完美通關</h3>
+                        <p class="mt-2 text-slate-400 text-sm lang-text" data-zh="充滿陷阱的古代遺跡，注意流沙與掉落物。" data-en="Ancient ruins full of traps, beware of quicksand.">充滿陷阱的古代遺跡，注意流沙與掉落物。</p>
+                    </div>
+                </div>
+
+                <!-- 影片卡片 2 -->
+                <div class="bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-orange-500/30 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition duration-300 reveal group cursor-pointer">
+                    <div class="relative aspect-video bg-black">
+                        <div class="absolute inset-0 flex items-center justify-center bg-slate-800">
+                            <i class="fas fa-play-circle text-6xl text-orange-400/80 group-hover:scale-110 transition duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-amber-900 bg-amber-400 px-2 py-1 rounded-full uppercase">Hot</span>
+                        <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="落日餘暉 - 隱藏路線" data-en="Sunset Glow - Hidden Path">落日餘暉 - 隱藏路線</h3>
+                        <p class="mt-2 text-slate-400 text-sm lang-text" data-zh="在夕陽下奔跑，解鎖最難的隱藏皇冠。" data-en="Running under the sunset, unlocking the hardest crown.">在夕陽下奔跑，解鎖最難的隱藏皇冠。</p>
+                    </div>
+                </div>
+
+                <!-- 影片卡片 3 -->
+                <div class="bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-orange-500/30 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition duration-300 reveal group cursor-pointer">
+                    <div class="relative aspect-video bg-black">
+                        <div class="absolute inset-0 flex items-center justify-center bg-slate-800">
+                            <i class="fas fa-play-circle text-6xl text-orange-400/80 group-hover:scale-110 transition duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="燃燒地獄 - 極限操作" data-en="Burning Hell - Extreme Skill">燃燒地獄 - 極限操作</h3>
+                        <p class="mt-2 text-slate-400 text-sm lang-text" data-zh="火焰特效全開，視覺與反應的雙重挑戰。" data-en="Full fire effects, a challenge of vision and reaction.">火焰特效全開，視覺與反應的雙重挑戰。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 跳舞的線 區塊 (維持紫色) -->
+    <section id="dancing-line" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-sans text-4xl font-bold text-purple-400 mb-4">DANCING LINE</h2>
+                <div class="h-1 w-20 bg-purple-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="聆聽節奏，引導線條穿越幾何世界" data-en="Listen to the rhythm, guide the line through geometry">聆聽節奏，引導線條穿越幾何世界</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- DL 影片 1 -->
+                <div class="flex flex-col md:flex-row bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition reveal">
+                    <div class="md:w-2/5 relative aspect-video md:aspect-auto bg-black">
+                         <div class="absolute inset-0 flex items-center justify-center bg-slate-800">
+                            <i class="fas fa-music text-4xl text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 md:w-3/5 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-white mb-2 lang-text" data-zh="鋼琴關卡 - 唯美旋律" data-en="The Piano - Beautiful Melody">鋼琴關卡 - 唯美旋律</h3>
+                        <p class="text-slate-400 mb-4 text-sm">這關的音樂與點擊判定非常嚴格。</p>
+                    </div>
+                </div>
+                 <!-- DL 影片 2 -->
+                 <div class="flex flex-col md:flex-row bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(192,132,252,0.3)] transition reveal">
+                    <div class="md:w-2/5 relative aspect-video md:aspect-auto bg-black">
+                         <div class="absolute inset-0 flex items-center justify-center bg-slate-800">
+                            <i class="fas fa-drum text-4xl text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 md:w-3/5 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-white mb-2 lang-text" data-zh="混沌 - 極速反應" data-en="The Chaos - Fast Reaction">混沌 - 極速反應</h3>
+                        <p class="text-slate-400 mb-4 text-sm">在視覺錯亂的空間中尋找出路。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- [新增] 動漫角色看板娘 (底部固定) 
+    <div class="fixed bottom-0 right-4 md:right-10 z-40 pointer-events-none">
+            [用戶自定義] 請將下方的 src 替換為您生成的動漫圖片連結 
+            特徵描述: 白色長髮, 灰藍色眼睛, 身高165, 動漫風格
+        <img src="https://placehold.co/200x400/1e293b/ffffff?text=Anime+Girl%0AWhite+Hair%0AGrey+Eyes" 
+             alt="Mascot: White hair anime girl with grey-blue eyes" 
+             class="h-64 md:h-96 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] mascot-breath"
+             style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
+    </div>
+    -->
+
+    <!-- 底部 -->
+    <footer id="contact" class="bg-slate-950 py-12 border-t border-slate-800 relative z-50">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold text-white mb-6 lang-text" data-zh="喜歡我的影片嗎？" data-en="Like my videos?">喜歡我的影片嗎？</h2>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="text-4xl text-red-600 hover:text-red-500 hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
+                <!--<a href="#" class="text-4xl text-blue-400 hover:text-blue-300 hover:scale-110 transition"><i class="fab fa-twitter"></i></a>-->
+                <a href="https://discord.gg/GWfNweaKsv" class="text-4xl text-indigo-500 hover:text-indigo-400 hover:scale-110 transition"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="text-slate-600 text-sm">&copy; 2025 TheFlyingTree.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 語言切換
+        const langToggleBtn = document.getElementById('lang-toggle');
+        let currentLang = 'zh'; 
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('.lang-text');
+            elements.forEach(el => {
+                if (el.dataset[currentLang]) {
+                    el.textContent = el.dataset[currentLang];
+                }
+            });
+            langToggleBtn.textContent = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
+        }
+
+        // 滾動動畫
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 150;
+
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
