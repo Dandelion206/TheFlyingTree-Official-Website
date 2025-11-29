@@ -12,6 +12,12 @@
         /* [修改] 引入 Quicksand 圓潤字體 */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@400;700&display=swap');
         
+        .section-bg {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* 視差滾動效果 */
+            position: relative;
+        }
 
 
          /* 首頁背景 */
@@ -23,7 +29,7 @@
         /* Rolling Sky 區塊背景 */
         #rolling-sky {
             /* [用戶自定義] Rolling Sky 背景圖片 */
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1920x1080/orange/fff?text=Rolling+Sky+BG');
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/Dandelion206/TheFlyingTree-Official-Website/refs/heads/main/rollingsky_bg.png?token=GHSAT0AAAAAADPVOBQ7YCHTBPH77TOV5O5C2JKPQVQ');
         }
 
         /* Dancing Line 區塊背景 */
@@ -35,7 +41,7 @@
         /* 鋼琴專區背景 */
         #piano-zone {
             /* [用戶自定義] 鋼琴專區背景圖片 */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://drive.google.com/file/d/1RaZT92RfrZdTTGITMYm4arvlZx6ofMPL/view?usp=sharing');
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/Dandelion206/TheFlyingTree-Official-Website/refs/heads/main/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202022-07-14%20210657.png?token=GHSAT0AAAAAADPVOBQ7REMGZXKNVUTARIZM2JKMQ5A');
         }
         body {
             /* [修改] 應用圓潤字體 */
@@ -52,6 +58,115 @@
         .font-sans {
             font-family:"思源黑體", 'Noto Sans TC', sans-serif;
         }
+
+        /* --- [功能 2] 88鍵鋼琴樣式 --- */
+        #piano-container {
+            position: fixed;
+            top: 80px; /* 位於導航欄下方 */
+            left: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 40;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto; /* 手機版可滑動 */
+            overflow-y: hidden;
+            border-bottom: 2px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .piano-keys-wrapper {
+            position: relative;
+            display: flex;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .key {
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        .white-key {
+            width: 1.8vw; /* 響應式寬度 */
+            min-width: 12px;
+            height: 100%;
+            background: white;
+            border: 1px solid #ccc;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            z-index: 1;
+        }
+
+        .white-key:active, .white-key.active {
+            background: #eee;
+            transform: translateY(2px);
+        }
+
+        .black-key {
+            width: 1.2vw;
+            min-width: 8px;
+            height: 60%;
+            background: rgb(29, 153, 255);
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        .black-key:active, .black-key.active {
+            background: #010052;
+        }
+
+        /* --- [功能 3] 流星雨視覺特效 --- */
+        .meteor-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 讓點擊穿透 */
+            z-index: 30; /* 在背景之上，內容之下 */
+        }
+
+        .meteor {
+            position: absolute;
+            top: 140px; /* 從琴鍵下方開始 */
+            width: 1.5vw; /* 與白鍵差不多寬 */
+            min-width: 10px;
+            background: cyan;
+            opacity: 0.8;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 10px currentColor;
+            /* 變換原點設為頂部，這樣增加高度時會向下長 */
+            transform-origin: top; 
+        }
+
+        .falling {
+            /* 定義下落動畫，這裡使用 JS 動態控制 */
+            transition: top 2s linear, opacity 1s ease-out;
+        }
+
+        /* 霓虹與文字特效 */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
 
         /* --- 星空背景特效 --- */
         .stars {
@@ -80,6 +195,22 @@
             height: 2px;
             background: transparent;
             box-shadow: 100px 200px #fff, 300px 600px #fff, 500px 100px #fff;
+        }
+
+        /* 動漫角色樣式 */
+        .mascot-container {
+            position: fixed;
+            bottom: 0;
+            right: 20px;
+            z-index: 40;
+            pointer-events: none;
+        }
+        .mascot-breath {
+            animation: breath 4s ease-in-out infinite;
+        }
+        @keyframes breath {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes twinkle {
@@ -137,41 +268,56 @@
     </style>
 </head>
 <body>
+    <!-- 流星層 -->
+    <div id="meteor-layer" class="meteor-container"></div>
 
-    <!-- 星空背景層 -->
+    <!-- 星空背景層 
     <div class="stars">
         <div class="star-layer" style="animation-duration: 5s; box-shadow: 120px 340px #FFF, 560px 120px #FFF, 890px 670px #FFF;"></div>
         <div class="star-layer" style="animation-duration: 8s; box-shadow: 420px 140px #FFF, 260px 820px #FFF, 690px 270px #FFF;"></div>
     </div>
+    -->
+
+    <!-- [功能 2] 88鍵鋼琴容器 -->
+    <!-- JS 將在此處生成琴鍵 -->
+    <div id="piano-container">
+        <div id="piano-keys" class="piano-keys-wrapper"></div>
+    </div>
+
+    <!-- 為了不被固定導航和鋼琴擋住，增加頂部間距 -->
+    <div style="height: 140px;"></div>
 
     <!-- 頂部導航欄 (固定) -->
-    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700 h-20 flex items-center justify-between px-6">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
                         <!-- [修改] Logo 顏色改為橙色與藍色漸變 -->
                         <i class="fas fa-gamepad text-3xl text-cyan-400 mr-3 animate-pulse"></i>
-                    </div>
-                    <div>
                         <span class="font-gaming text-2xl font-bold text-white tracking-wider">TheFlyingTree</span>
-                    </div>
                 </div>
+                <!-- 手機版漢堡按鈕 -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="首頁" data-en="Home">首頁</a>
-                    <!-- [修改] 連結懸停顏色改為橙色 -->
-                     <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
+                    <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
                     <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
-                    <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>
-                    
-                    
+                    <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>          
                     <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-en="Subscribe">訂閱頻道</a>
                     
                     <button id="lang-toggle" class="ml-4 border border-slate-600 px-3 py-1 rounded text-xs text-slate-300 hover:bg-slate-700">EN / 中</button>
                 </div>
-            </div>
+
+        <!-- [新增] 手機版下拉選單 -->
+        <div id="mobile-menu" class="w-full md:hidden bg-slate-900 absolute top-20 left-0 border-b border-slate-700 shadow-xl flex flex-col items-center py-4 space-y-4">
+            <a href="#home" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2">首頁</a>
+            <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2">Rolling Sky</a>
+            <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 font-bold transition w-full text-center py-2">Dancing Line</a>
+            <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2">鋼琴區</a>
+            <a href="#sheet-music" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2">樂譜</a>
+            <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 px-6 py-2 rounded-full text-white font-bold hover:bg-amber-500">訂閱</a>
         </div>
-        <div class="piano-border"></div>
     </nav>
 
     <!-- Hero Section (首頁封面) -->
@@ -570,6 +716,347 @@
                 });
             });
         });
+
+        // 手機選單控制邏輯
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            // 讓內容推動或覆蓋的邏輯已經在 CSS 完成
+        });
+
+        // 點擊連結後自動關閉選單
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+
+
+         /* --- [功能 2 & 3] 鋼琴生成與互動邏輯 ---
+           此腳本包含：
+           1. 動態生成 88 個鋼琴鍵
+           2. Web Audio API 音效處理
+           3. 流星視覺特效生成與控制
+        */
+
+        const pianoKeysContainer = document.getElementById('piano-keys');
+        const meteorLayer = document.getElementById('meteor-layer');
+        let audioCtx;
+        
+        // 鋼琴音高頻率計算 (A0 = 27.5Hz)
+        const getFrequency = (n) => 27.5 * Math.pow(2, (n - 1) / 12);
+
+        // 初始化 Web Audio API (需要用戶交互後才能啟動)
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // 存儲當前按下的鍵的狀態 { keyIndex: { oscillator, meteorElement, startTime } }
+        const activeNotes = {};
+
+        // 生成 88 鍵 (A0 - C8)
+        // 鍵盤佈局模式: 12個音一組 (白白黑白黑白白黑白黑白黑) 
+        // 鋼琴從 A0 開始，前三個鍵是 A0, Bb0, B0 (白, 黑, 白)
+        // 之後每 12 鍵循環: C (白), C# (黑), D (白), D# (黑), E (白), F (白), F# (黑), G (白), G# (黑), A (白), A# (黑), B (白)
+        
+        const keyPattern = [0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0]; // 1=黑, 0=白 (C大調八度)
+        // A0, Bb0, B0
+        const firstOctave = [0, 1, 0]; 
+        
+        let totalKeys = 88;
+        let whiteKeyCount = 0;
+
+        for (let i = 0; i < totalKeys; i++) {
+            let isBlack = false;
+            let noteInOctave;
+            
+            if (i < 3) {
+                isBlack = firstOctave[i] === 1;
+            } else {
+                noteInOctave = (i - 3) % 12;
+                isBlack = keyPattern[noteInOctave] === 1;
+            }
+
+            const keyEl = document.createElement('div');
+            keyEl.dataset.index = i;
+            
+            if (isBlack) {
+                keyEl.className = 'key black-key';
+                // 計算黑鍵位置：放置在剛生成的白鍵之後，並向左偏移
+                // 由於我們使用 Flexbox 排列白鍵，黑鍵使用 absolute 定位
+                // 這裡簡化處理：黑鍵放在 HTML 結構中，透過 margin 或 absolute 定位
+                // 為了簡化 88 鍵佈局，我們將黑鍵作為白鍵的子元素或者使用絕對定位計算 left%
+                // 簡單方案：將黑鍵放在對應白鍵的右側邊界上
+                
+                // 更精確的方案：只渲染白鍵作為 Flex 項目，黑鍵插入到容器中並絕對定位
+                // 但為了代碼簡單，我們這裡用一個簡單的 trick:
+                // 在遍歷時，如果是黑鍵，我們將其添加到上一個白鍵內部或計算位置
+                // 這裡我們採用: 所有白鍵是 flex 項目，黑鍵是 absolute 在 wrapper 裡
+            } else {
+                keyEl.className = 'key white-key';
+                pianoKeysContainer.appendChild(keyEl);
+                
+                // 如果下一個是黑鍵，則在這個白鍵的位置生成黑鍵
+                // 判斷下一個是否為黑鍵
+                let nextIsBlack = false;
+                if (i + 1 < totalKeys) {
+                    if (i + 1 < 3) nextIsBlack = firstOctave[i+1] === 1;
+                    else nextIsBlack = keyPattern[(i + 1 - 3) % 12] === 1;
+                }
+
+                if (nextIsBlack) {
+                    const blackKey = document.createElement('div');
+                    blackKey.className = 'key black-key';
+                    blackKey.dataset.index = i + 1;
+                    // 黑鍵位置：基於當前白鍵位置向右偏移
+                    // 由於這是動態生成，我們需要在白鍵渲染後計算位置，或者簡單地
+                    // 將黑鍵 append 到 container，設定 left 為 (whiteKeyCount + 0.7) * whiteKeyWidth
+                    // 但這裡我們用最簡單的 CSS：將黑鍵放在白鍵裡面？不行。
+                    // 方案：將黑鍵設為 absolute，left 計算
+                    blackKey.style.left = `calc(${ (whiteKeyCount + 0.6) * 1.8 }vw)`; // 1.8vw 是白鍵寬度
+                    pianoKeysContainer.appendChild(blackKey);
+                    
+                    // 綁定黑鍵事件
+                    bindKeyEvents(blackKey, i + 1);
+                    i++; // 跳過下一次循環的黑鍵索引
+                }
+                
+                // 綁定白鍵事件
+                bindKeyEvents(keyEl, i - (nextIsBlack ? 1 : 0)); // 修正索引回傳
+                whiteKeyCount++;
+            }
+             // 修正上方的邏輯漏洞：上面的代碼有點亂，因為黑鍵處理複雜。
+             // 讓我們重寫一個更乾淨的生成邏輯：只生成白鍵，然後把黑鍵插在特定的白鍵之後
+        }
+
+        // 清空並重新生成更穩定的版本
+        pianoKeysContainer.innerHTML = '';
+        whiteKeyCount = 0;
+        
+        // 88鍵映射表：1為黑鍵，0為白鍵
+        const fullMap = [
+            0, 1, 0, // A0, Bb0, B0
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, // C1 - B1
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+            0 // C8
+        ];
+
+        fullMap.forEach((isBlack, index) => {
+            if (isBlack === 0) {
+                // 白鍵
+                const wk = document.createElement('div');
+                wk.className = 'key white-key';
+                wk.dataset.index = index;
+                pianoKeysContainer.appendChild(wk);
+                bindKeyEvents(wk, index);
+                whiteKeyCount++;
+            } else {
+                // 黑鍵 (放在上一個白鍵之後)
+                const bk = document.createElement('div');
+                bk.className = 'key black-key';
+                bk.dataset.index = index;
+                // 計算位置：白鍵數量 * 白鍵寬度 - 黑鍵寬度的一半
+                // 這裡使用 calc 動態計算
+                bk.style.left = `calc(${ (whiteKeyCount - 1) * 1.8 }vw + 1.2vw)`; 
+                // 微調：白鍵寬 1.8vw, 黑鍵寬 1.2vw. 黑鍵中心應在兩個白鍵縫隙
+                // 縫隙位置 = whiteKeyCount * 1.8vw. 
+                // 黑鍵 left = (whiteKeyCount * 1.8vw) - (0.6vw)
+                bk.style.left = `calc(${ whiteKeyCount * 1.8 }vw - 0.6vw)`;
+                
+                pianoKeysContainer.appendChild(bk);
+                bindKeyEvents(bk, index);
+            }
+        });
+
+        // 29/11/25 鍵盤映射表 (FL Studio 風格: C4-B4 下排, C5-E6 上排)
+        // 索引對照: C4(Middle C) 是第 39 號索引 (從 A0=0 開始算)
+        // Z(C4) -> Index 39
+        const keyMap = {
+            // 下排: Z X C V B N M (C4 - B4)
+            'KeyZ': 39, // C4
+            'KeyS': 40, // C#4
+            'KeyX': 41, // D4
+            'KeyD': 42, // D#4
+            'KeyC': 43, // E4
+            'KeyV': 44, // F4
+            'KeyG': 45, // F#4
+            'KeyB': 46, // G4
+            'KeyH': 47, // G#4
+            'KeyN': 48, // A4
+            'KeyJ': 49, // A#4
+            'KeyM': 50, // B4
+
+            // 上排: Q W E R T Y U I O P (C5 - E6)
+            // 逗號和 L 通常接續 B4，但依據您的要求使用 Q 接 C5
+            'KeyQ': 51, // C5
+            'Digit2': 52, // C#5
+            'KeyW': 53, // D5
+            'Digit3': 54, // D#5
+            'KeyE': 55, // E5
+            'KeyR': 56, // F5
+            'Digit5': 57, // F#5
+            'KeyT': 58, // G5
+            'Digit6': 59, // G#5
+            'KeyY': 60, // A5
+            'Digit7': 61, // A#5
+            'KeyU': 62, // B5
+            'KeyI': 63, // C6
+            'Digit9': 64, // C#6
+            'KeyO': 65, // D6
+            'Digit0': 66, // D#6
+            'KeyP': 67  // E6
+        };
+
+        // [新增功能] 鍵盤監聽事件
+        window.addEventListener('keydown', (e) => {
+            // 防止按住鍵盤時重複觸發 (音效只觸發一次)
+            if (e.repeat) return;
+            
+            // 獲取對應的琴鍵索引
+            const noteIndex = keyMap[e.code];
+            if (noteIndex !== undefined) {
+                initAudio();
+                const keyElement = document.querySelector(`.key[data-index="${noteIndex}"]`);
+                if (keyElement) {
+                    playNote(noteIndex, keyElement);
+                    // 讓可視區域捲動到按下的鍵 (可選)
+                    // keyElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            const noteIndex = keyMap[e.code];
+            if (noteIndex !== undefined) {
+                const keyElement = document.querySelector(`.key[data-index="${noteIndex}"]`);
+                if (keyElement) {
+                    releaseNote(noteIndex, keyElement);
+                }
+            }
+        });
+
+        function bindKeyEvents(el, index) {
+            // 滑鼠/觸控按下
+            const startNote = (e) => {
+                e.preventDefault();
+                initAudio();
+                playNote(index, el);
+            };
+            
+            // 滑鼠/觸控放開
+            const stopNote = (e) => {
+                e.preventDefault();
+                releaseNote(index, el);
+            };
+
+            el.addEventListener('mousedown', startNote);
+            el.addEventListener('touchstart', startNote);
+            
+            el.addEventListener('mouseup', stopNote);
+            el.addEventListener('mouseleave', stopNote);
+            el.addEventListener('touchend', stopNote);
+        }
+
+        // 播放音效與生成流星
+        function playNote(index, el) {
+            if (activeNotes[index]) return; // 防止重複觸發
+
+            el.classList.add('active');
+
+            // 1. 音效 (Web Audio API)
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'triangle'; // 三角波適合做簡單鋼琴音
+            osc.frequency.value = getFrequency(index + 1);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            
+            // 聲音包絡 (Attack)
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.05);
+
+            // 2. 視覺特效 (生成流星)
+            // 獲取琴鍵位置
+            const rect = el.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            
+            // 隨機顏色 (霓虹色系)
+            const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0000', '#ffaa00'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor';
+            meteor.style.left = (centerX - 5) + 'px'; // 居中
+            meteor.style.backgroundColor = randomColor;
+            meteor.style.boxShadow = `0 0 15px ${randomColor}`;
+            meteor.style.height = '0px'; // 初始高度
+            
+            meteorLayer.appendChild(meteor);
+
+            // 記錄狀態
+            activeNotes[index] = {
+                oscillator: osc,
+                gainNode: gain,
+                meteor: meteor,
+                startTime: Date.now(),
+                timer: setInterval(() => {
+                    // 按住時，流星長度增長
+                    const currentHeight = parseInt(meteor.style.height || 0);
+                    meteor.style.height = (currentHeight + 10) + 'px'; // 增長速度
+                }, 20)
+            };
+        }
+
+        // 停止音效與讓流星落下
+        function releaseNote(index, el) {
+            if (!activeNotes[index]) return;
+
+            el.classList.remove('active');
+            
+            const { oscillator, gainNode, meteor, timer } = activeNotes[index];
+            
+            // 1. 停止音效 (Release)
+            const now = audioCtx.currentTime;
+            gainNode.gain.cancelScheduledValues(now);
+            gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.5); // 0.5秒尾音
+            oscillator.stop(now + 0.5);
+
+            // 2. 停止流星增長並落下
+            clearInterval(timer);
+            
+            // 計算落下距離 (例如落到螢幕底部)
+            const fallDistance = window.innerHeight + 500; 
+            
+            meteor.style.top = fallDistance + 'px';
+            meteor.classList.add('falling');
+            meteor.style.opacity = '0';
+
+            // 動畫結束後移除元素
+            setTimeout(() => {
+                if(meteor.parentNode) meteor.parentNode.removeChild(meteor);
+            }, 2000);
+
+            // 清除狀態
+            delete activeNotes[index];
+        }
     </script>
 </body>
 </html>
