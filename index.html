@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- [用戶自定義] 修改瀏覽器標籤頁標題 -->
-    <title>TheFlyingTree | 滾動的天空 & 跳舞的線</title>
+    <title>TheFlyingTree Official Website</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -319,17 +319,18 @@
             <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
             <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>          
             <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-en="Subscribe">訂閱頻道</a>                    
-            <button id="lang-toggle" class="ml-4 border border-slate-600 px-3 py-1 rounded text-xs text-slate-300 hover:bg-slate-700">EN / 中</button>
+            <button id="desktop-lang-btn" class="border border-slate-500 text-xs px-2 py-1 rounded text-slate-300 hover:bg-slate-700">EN / 中</button>
         </div>
 
         <!-- [新增] 手機版下拉選單 -->
         <div id="mobile-menu" class="w-full md:hidden bg-slate-900 absolute top-20 left-0 border-b border-slate-700 shadow-xl flex flex-col items-center py-4 space-y-4">
-            <a href="#home" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2">首頁</a>
-            <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2">鋼琴區</a>
-            <a href="#sheet-music" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2">樂譜</a>
-            <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2">Rolling Sky</a>
-            <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 font-bold transition w-full text-center py-2">Dancing Line</a>
-            <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 px-6 py-2 rounded-full text-white font-bold hover:bg-amber-500">訂閱</a>
+            <a href="#home" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2" data-zh="首頁" data-en="Home">首頁</a>
+            <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
+            <a href="#sheet-music" class="text-gray-300 hover:text-blue-400 font-bold transition w-full text-center py-2" data-zh="樂譜" data-en="Sheet Music">樂譜</a>
+            <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 font-bold transition w-full text-center py-2" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
+            <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 font-bold transition w-full text-center py-2" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>
+            <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 px-6 py-2 rounded-full text-white font-bold hover:bg-amber-500" data-zh="訂閱" data-en="Subscribe">訂閱</a>
+            <button id="mobile-lang-btn" class="border border-slate-500 px-4 py-2 rounded text-slate-300 hover:bg-slate-700 w-1/2">EN / 中</button>
         </div>
     </nav>
 
@@ -682,24 +683,32 @@
     </footer>
 
     <script>
-        // 語言切換
-        const langToggleBtn = document.getElementById('lang-toggle');
-        let currentLang = 'zh'; 
-
-        langToggleBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            updateLanguage();
-        });
+        /* --- [新增] 語言切換邏輯 --- */
+        const desktopLangBtn = document.getElementById('desktop-lang-btn');
+        const mobileLangBtn = document.getElementById('mobile-lang-btn');
+        let currentLang = 'zh';
 
         function updateLanguage() {
             const elements = document.querySelectorAll('.lang-text');
             elements.forEach(el => {
-                if (el.dataset[currentLang]) {
-                    el.textContent = el.dataset[currentLang];
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) {
+                    el.innerText = text;
                 }
             });
-            langToggleBtn.textContent = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
+            // 更新按鈕文字
+            const btnText = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
+            if(desktopLangBtn) desktopLangBtn.innerText = btnText;
+            if(mobileLangBtn) mobileLangBtn.innerText = btnText;
         }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+
+        if(desktopLangBtn) desktopLangBtn.addEventListener('click', toggleLanguage);
+        if(mobileLangBtn) mobileLangBtn.addEventListener('click', toggleLanguage);
 
         // 滾動動畫
         document.addEventListener('DOMContentLoaded', () => {
