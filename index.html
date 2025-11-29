@@ -219,18 +219,18 @@
             100% { opacity: 0.3; transform: translateY(-50px); }
         }
 
-        /* --- 鋼琴鍵盤裝飾線條 --- */
-        .piano-border {
-            height: 10px;
-            background-image: repeating-linear-gradient(
-                90deg,
-                #ffffff 0px,
-                #ffffff 18px,
-                #000000 18px,
-                #000000 20px
-            );
-            opacity: 0.8;
+        /* 手機版導航選單樣式 */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
 
         /* 霓虹光暈效果 - 通用 */
         .neon-text {
@@ -289,25 +289,24 @@
 
     <!-- 頂部導航欄 (固定) -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700 h-20 flex items-center justify-between px-6">
-                <div class="flex items-center">
-                        <!-- [修改] Logo 顏色改為橙色與藍色漸變 -->
-                        <i class="fas fa-gamepad text-3xl text-cyan-400 mr-3 animate-pulse"></i>
-                        <span class="font-gaming text-2xl font-bold text-white tracking-wider">TheFlyingTree</span>
-                </div>
-                <!-- 手機版漢堡按鈕 -->
-                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+        <div class="flex items-center">
+                <!-- [修改] Logo 顏色改為橙色與藍色漸變 -->
+                <i class="fas fa-gamepad text-3xl text-cyan-400 mr-3 animate-pulse"></i>
+                <span class="font-gaming text-2xl font-bold text-white tracking-wider">TheFlyingTree</span>
+        </div>
+        <!-- 手機版漢堡按鈕 -->
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="首頁" data-en="Home">首頁</a>
-                    <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
-                    <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
-                    <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>          
-                    <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-en="Subscribe">訂閱頻道</a>
-                    
-                    <button id="lang-toggle" class="ml-4 border border-slate-600 px-3 py-1 rounded text-xs text-slate-300 hover:bg-slate-700">EN / 中</button>
-                </div>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="首頁" data-en="Home">首頁</a>
+            <a href="#piano-zone" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="鋼琴專區" data-en="Piano Zone">鋼琴專區</a>
+            <a href="#rolling-sky" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="滾動的天空" data-en="Rolling Sky">滾動的天空</a>
+            <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-en="Dancing Line">跳舞的線</a>          
+            <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-en="Subscribe">訂閱頻道</a>                    
+            <button id="lang-toggle" class="ml-4 border border-slate-600 px-3 py-1 rounded text-xs text-slate-300 hover:bg-slate-700">EN / 中</button>
+        </div>
 
         <!-- [新增] 手機版下拉選單 -->
         <div id="mobile-menu" class="w-full md:hidden bg-slate-900 absolute top-20 left-0 border-b border-slate-700 shadow-xl flex flex-col items-center py-4 space-y-4">
