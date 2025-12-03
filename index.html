@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -347,13 +347,16 @@
             <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-bold transition lang-text" data-zh="跳舞的線" data-zh-cn="跳舞的线" data-en="Dancing Line" data-ja="Dancing Line" data-ko="Dancing Line">跳舞的線</a>          
             <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-amber-500/30 lang-text" data-zh="訂閱頻道" data-zh-cn="订阅频道" data-en="Subscribe" data-ja="チャンネル登録" data-ko="구독">訂閱頻道</a>                    
              <!-- 電腦版語言下拉選單 -->
-            <select id="desktop-lang-select" class="lang-select">
-                <option value="zh">繁體中文</option>
-                <option value="zh-cn">简体中文</option>
-                <option value="en">English</option>
-                <option value="ja">日本語</option>
-                <option value="ko">한국어</option>
-            </select>
+             <div class="flex items-center gap-1.5 px-3 py-2"> 
+                <i class="fas fa-globe text-white-400 text-md ml-2"></i>
+                <select id="desktop-lang-select" class="lang-select">                
+                    <option value="zh">繁體中文</option>
+                    <option value="zh-cn">简体中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                </select>
+             </div>
         </div>
 
         <!-- [新增] 手機版下拉選單 -->
@@ -365,7 +368,8 @@
             <a href="#dancing-line" class="text-gray-300 hover:text-purple-400 font-bold transition w-full text-center py-2" data-zh="跳舞的線" data-zh-cn="跳舞的线" data-en="Dancing Line" data-ja="Dancing Line" data-ko="Dancing Line">跳舞的線</a>
             <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="bg-amber-600 px-6 py-2 rounded-full text-white font-bold hover:bg-amber-500" data-zh="訂閱" data-zh-cn="订阅" data-en="Subscribe" data-ja="チャンネル登録" data-ko="구독">訂閱</a>
             <!-- [新增] 手機版語言下拉選單 -->
-            <div class="py-2">
+            <div class="flex items-center gap-1.5 px-3 py-2">
+                <i class="fas fa-globe text-white-400 text-md ml-2"></i>
                 <select id="mobile-lang-select" class="lang-select w-40 text-center">
                     <option value="zh">繁體中文</option>
                     <option value="zh-cn">简体中文</option>
@@ -431,19 +435,162 @@
                最新消息與公告
             </p>
         </div>
-        <div class="bg-slate-800/80 rounded-xl p-6 border-t-4 border-orange-500 -translate-y-2 transition duration-300 mb-4 reveal">
-                <h3 class="text-xl font-bold text-white mb-3 lang-text" data-zh="樂譜製作" data-en="Sheet Music Making">樂譜製作</h3>
-                <p class="text-gray-300 leading-relaxed mb-4 lang-text" data-zh="世界計劃劇場版插入曲《你好，世界》的樂譜正在製作中" data-en="Sheet music for COLORFUL STAGE! The Movie: A Miku Who Can't Sing - 'Hello, World' is in progress">
-                    世界計劃劇場版插入曲《你好，世界》的樂譜正在製作中
-                </p>
-                <span class="text-sm text-orange-400">2025-11-29</span>
+
+        <div id="latest-announcements" class="space-y-6">
+            <div class="bg-slate-800/80 rounded-xl p-6 border-t-4 border-orange-500 -translate-y-2 transition duration-300 mb-4 reveal">
+                    <h3 class="text-xl font-bold text-white mb-3 lang-text" data-zh="樂譜製作" data-en="Sheet Music Making" data-zh-cn="乐谱制作" data-ja="楽譜制作" data-ko="악보 제작">樂譜製作</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4 lang-text" data-zh="世界計劃劇場版插入曲《你好，世界》的樂譜正在製作中" data-en="Sheet music for COLORFUL STAGE! The Movie: A Miku Who Can't Sing - 'Hello, World' is in progress" data-zh-cn="《世界计划》剧场版插入曲《你好，世界》的乐谱正在制作中" data-ja="劇場版プロセカ挿入歌《ハローセカイ 》楽譜を製作中です" data-ko="컬러풀 스테이지! 더 무비 삽입곡 '헬로, 월드' 악보가 제작 중입니다">
+                        世界計劃劇場版插入曲《你好，世界》的樂譜正在製作中
+                    </p>
+                    <span class="text-sm text-orange-400">2025-11-30</span>
+            </div>
+
+            <div class="bg-red-900/40 backdrop-blur-sm rounded-xl p-6 border-t-4 border-red-500 -translate-y-2 transition duration-300 reveal ring-1 ring-red-500/50">
+                <h3 class="text-2xl font-bold text-red-400 mb-4 lang-text"
+                    data-zh="關於近期侵權行為的重要聲明"
+                    data-zh-cn="关于近期侵权行为的重要声明"
+                    data-en="Important Statement Regarding Recent Copyright Infringement"
+                    data-ja="最近の著作権侵害行為に関する重要なお知らせ"
+                    data-ko="최근 저작권 침해 행위에 대한 중요 성명">
+                    關於近期侵權行為的重要聲明
+                </h3>
+
+                <div class="text-gray-200 text-sm leading-relaxed space-y-4 lang-text"
+                    data-zh="本頻道近日發現有人惡意將本頻道的改編作品在未經同意下大肆上傳至其他音樂串流平台，且未標註出處。此行為已構成嚴重侵權，損害本頻道權益。目前已要求相關人士立即下架侵權內容並糾正行為。若對方拒不改正，本頻道將採取進一步行動維護權益。
+
+                    本頻道重申內容使用政策：
+                    1. 在明確標註作者並附上原作品連結的前提下，允許：
+                    1.1 在Bilibili或YouTube進行正面二次創作
+                    1.2 在非商業線下活動中使用
+                    2. 其他用途請事先取得授權。可透過Bilibili私信或電郵 theflyingtree0924@gmail.com 聯繫。
+                    3. 嚴禁以下行為：
+                    3.1 直接搬運原音檔或影片至其他平台
+                    3.2 未標註來源或未經許可使用
+                    3.3 向任何平台冒充版权方
+
+                    發現侵權行為請立即向本頻道舉報，本頻道必將嚴肅處理。
+
+                    希望大家一起尊重創作，感謝配合！
+
+                    TheFlyingTree
+                    2025年11月30日"
+
+                            data-zh-cn="本频道近日发现有人恶意将本频道的改编作品在未经同意下大肆上传至其他音乐串流平台，且未标注出处。此行为已构成严重侵权，损害本频道权益。目前已要求相关人士立即下架侵权内容并纠正行为。若对方拒不改正，本频道将采取进一步行动维护权益。
+
+                    本频道重申内容使用政策：
+                    1. 在明确标注作者并附上原作品链接的前提下，允许：
+                    1.1 在Bilibili或YouTube进行正面二次创作
+                    1.2 在非商业线下活动中使用
+                    2. 其他用途请事先取得授权。可透过Bilibili私信或电邮 theflyingtree0924@gmail.com 联系。
+                    3. 严禁以下行为：
+                    3.1 直接搬运原音档或影片至其他平台
+                    3.2 未标注来源或未经许可使用
+                    3.3 向任何平台冒充版权方
+
+                    发现侵权行为请立即向本频道举报，本频道必将严肃处理。
+
+                    希望大家一起尊重创作，感谢配合！
+
+                    TheFlyingTree
+                    2025年11月30日"
+
+                            data-en="Recently, it has come to our attention that certain individuals have maliciously re-uploaded this channel's arrangements to various music streaming platforms without permission and without proper credit. This constitutes serious copyright infringement and harms the channel's rights. We have demanded the immediate removal of infringing content. Should the infringers fail to comply, further action will be taken.
+
+                    Content Usage Policy (Reiterated):
+                    1. Permitted (with clear credit and original link):
+                    1.1 Positive secondary creations on Bilibili or YouTube
+                    1.2 Non-commercial offline use
+                    2. All other uses require prior authorization. Contact via Bilibili DM or email: theflyingtree0924@gmail.com
+                    3. Strictly prohibited:
+                    3.1 Direct re-uploading of audio/video files
+                    3.2 Use without credit or permission
+                    3.3 Claiming copyright ownership on any platform
+
+                    Please report any infringement immediately. All cases will be pursued seriously.
+
+                    Respect creation. Thank you for your cooperation.
+
+                    TheFlyingTree
+                    30 November 2025"
+
+                            data-ja="最近、当チャンネルの編曲作品が無断で他の音楽配信プラットフォームに大量アップロードされ、クレジット表記もない悪質な著作権侵害が発覚しました。現在、関係者に即時削除と訂正を要求中です。応じない場合は法的措置を含めた適切な対応を取ります。
+
+                    コンテンツ利用規約（再掲）：
+                    1. 著作者名と原作リンクを明記すれば許可：
+                    1.1 Bilibili・YouTubeでのポジティブな二次創作
+                    1.2 非商業のオフライン活動での使用
+                    2. その他の用途は事前許可必須（Bilibili私信または theflyingtree0924@gmail.com まで）
+                    3. 厳禁事項：
+                    3.1 原音源・動画の無断転載
+                    3.2 クレジットなし・許可なしの使用
+                    3.3 著作権者であるかのような虚偽申告
+
+                    侵害発見時は即時ご連絡ください。厳正に対応いたします。
+
+                    創作尊重にご協力をお願いします。
+
+                    TheFlyingTree
+                    2025年11月30日"
+
+                            data-ko="최근 본 채널의 편곡 작품이 허락 없이 다른 음악 스트리밍 플랫폼에 대량 업로드되고, 출처 표기도 없는 악의적인 저작권 침해가 확인되었습니다. 현재 해당자에게 즉시 삭제 및 정정을 요구 중이며, 응하지 않을 경우 적절한 법적 조치를 취할 예정입니다.
+
+                    컨텐츠 이용 정책 재공지:
+                    1. 저자 명기 및 원본 링크 첨부 시 허용:
+                    1.1 Bilibili·YouTube에서의 긍정적인 2차 창작
+                    1.2 비상업적 오프라인 활동에서의 사용
+                    2. 기타 용도는 사전 승인 필수 (Bilibili DM 또는 theflyingtree0924@gmail.com)
+                    3. 절대 금지 행위:
+                    3.1 원본 음원·영상 그대로 타 플랫폼 업로드
+                    3.2 출처 미표기 또는 미승인 사용
+                    3.3 저작권자 행세
+
+                    침해 발견 시 즉시 신고 부탁드립니다. 엄중 조치하겠습니다.
+
+                    창작을 존중해 주세요. 협조 부탁드립니다.
+
+                    TheFlyingTree
+                    2025년 11월 30일">
+                    本頻道近日發現有人惡意將本頻道的改編作品在未經同意下大肆上傳至其他音樂串流平台，且未標註出處。此行為已構成嚴重侵權，損害本頻道權益。目前已要求相關人士立即下架侵權內容並糾正行為。若對方拒不改正，本頻道將採取進一步行動維護權益。
+
+                    本頻道重申內容使用政策：<br><br>
+                    1. 在明確標註作者並附上原作品連結的前提下，允許：<br>
+                    1.1 在Bilibili或YouTube進行正面二次創作<br>
+                    1.2 在非商業線下活動中使用<br>
+                    2. 其他用途請事先取得授權。可透過Bilibili私信或電郵 theflyingtree0924@gmail.com 聯繫。<br>
+                    3. 嚴禁以下行為：<br>
+                    3.1 直接搬運原音檔或影片至其他平台<br>
+                    3.2 未標註來源或未經許可使用<br>
+                    3.3 向任何平台冒充版权方<br>
+
+                    發現侵權行為請立即向本頻道舉報，本頻道必將嚴肅處理。
+
+                    希望大家一起尊重創作，感謝配合！<br><br>
+
+                    TheFlyingTree<br>
+                    2025年11月30日
+                </div>
+            </div>
         </div>
-        <div class="bg-slate-800/80 rounded-xl p-6 border-t-4 border-orange-500 -translate-y-2 transition duration-300 mb-4 reveal">
-                <h3 class="text-xl font-bold text-white mb-3 lang-text" data-zh="網站正式上線！" data-en="Website Officially Launched!">網站正式上線！</h3>
-                <p class="text-gray-300 leading-relaxed mb-4 lang-text" data-zh="歡迎來到我的全新個人網站！" data-en="Welcome to my brand new personal website!">
-                    歡迎來到我的全新個人網站！
-                </p>
-                <span class="text-sm text-orange-400">2025-11-29</span>
+
+        <div id="older-announcements" class="space-y-6 mt-8 hidden">
+            <div class="bg-slate-800/80 rounded-xl p-6 border-t-4 border-orange-500 -translate-y-2 transition duration-300 mb-4 reveal">
+                    <h3 class="text-xl font-bold text-white mb-3 lang-text" data-zh="網站正式上線！" data-en="Website Officially Launched!" data-zh-cn="网站正式上线！" data-ja="ウェブサイト正式公開！" data-ko="웹사이트 공식 출시!">網站正式上線！</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4 lang-text" data-zh="歡迎來到我的全新個人網站！" data-en="Welcome to my brand new personal website!" data-zh-cn="欢迎来到我的全新个人网站！" data-ja="私の新しい個人ウェブサイトへようこそ！" data-ko="나의 새로운 개인 웹사이트에 오신 것을 환영합니다!">
+                        歡迎來到我的全新個人網站！
+                    </p>
+                    <span class="text-sm text-orange-400">2025-11-29</span>
+            </div>
+        </div>
+
+        <!-- 展開按鈕 -->
+        <div class="text-center mt-10">
+            <button id="toggle-older" class="group inline-flex items-center gap-3 text-orange-400 hover:text-orange-300 transition text-lg font-medium">
+                <span class="lang-text" data-zh="查看更多公告" data-en="View More Announcements"
+                      data-zh-cn="查看更多公告" data-ja="もっと見る" data-ko="더 보기">
+                    查看更多公告
+                </span>
+                <i class="fas fa-chevron-down text-2xl group-hover:translate-y-1 transition"></i>
+            </button>
         </div>
     </div>
 </section>
@@ -542,7 +689,7 @@
             <div class="text-center mb-12 reveal">
                 <h2 class="font-sans text-3xl font-bold text-blue-300 mb-4 lang-text" data-zh="樂譜下載" data-en="SHEET MUSIC">樂譜下載</h2>
                 <div class="h-0.5 w-16 bg-blue-500/50 mx-auto rounded-full"></div>
-                <p class="mt-3 text-gray-400 text-sm font-medium lang-text" data-zh="獲取代應上方影片的鋼琴譜" data-en="Get the sheet music for the covers above">獲取代應上方影片的鋼琴譜</p>
+                <p class="mt-3 text-gray-400 text-sm font-medium lang-text" data-zh="獲取代應上方影片的鋼琴譜" data-en="Get the sheet music for the covers above" data-zh-cn="获取对应上方影片的钢琴谱" data-ja="上の動画に対応する楽譜を入手する" data-ko="위 동영상에 해당하는 피아노 악보를 받으세요">獲取代應上方影片的鋼琴譜</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -609,7 +756,7 @@
                 <h2 class="font-sans text-4xl font-bold text-orange-400 mb-4">ROLLING SKY</h2>
                 <!-- [修改] 裝飾線顏色 orange-500 -->
                 <div class="h-1 w-20 bg-orange-500 mx-auto rounded-full"></div>
-                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="挑戰極限反應速度" data-en="Challenge Your Reaction Speed">挑戰極限反應速度</p>
+                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="挑戰極限反應速度" data-en="Challenge Your Reaction Speed" data-zh-cn="挑战极限反应速度" data-ja="反応速度に挑戦する" data-ko="반응 속도에 도전하세요">挑戰極限反應速度</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -690,7 +837,7 @@
             <div class="text-center mb-16 reveal">
                 <h2 class="font-sans text-4xl font-bold text-purple-400 mb-4">DANCING LINE</h2>
                 <div class="h-1 w-20 bg-purple-500 mx-auto rounded-full"></div>
-                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="跟著節奏點擊" data-en="Tap the Rhythm">跟著節奏點擊</p>
+                <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="跟著節奏點擊" data-en="Tap the Rhythm" data-zh-cn="跟着节奏点击" data-ja="リズムに合わせてタップ" data-ko="리듬에 맞춰 탭하세요">跟著節奏點擊</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -768,7 +915,7 @@
     <!-- 底部 -->
     <footer id="contact" class="bg-slate-950 py-12 border-t border-slate-800 relative z-50">
         <div class="max-w-4xl mx-auto text-center px-4">
-            <h2 class="text-3xl font-bold text-white mb-6 lang-text" data-zh="喜歡我的影片嗎？" data-en="Like my videos?">喜歡我的影片嗎？</h2>
+            <h2 class="text-3xl font-bold text-white mb-6 lang-text" data-zh="喜歡我的影片嗎？" data-en="Like my videos?" data-zh-cn="喜欢我的视频吗？" data-ja="私の動画は好きですか？" data-ko="내 동영상이 마음에 드나요?">喜歡我的影片嗎？</h2>
             
             <div class="flex justify-center space-x-6 mb-8">
                 <a href="https://www.youtube.com/@TheFlyingTree2809/" target="_blank" class="text-4xl text-red-600 hover:text-red-500 hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
@@ -872,6 +1019,36 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        //公告展開收合功能
+        document.getElementById('toggle-older')?.addEventListener('click', function() {
+            const older = document.getElementById('older-announcements');
+            const icon = this.querySelector('i');
+            const text = this.querySelector('.lang-text');
+
+            older.classList.toggle('hidden');
+
+            if (older.classList.contains('hidden')) {
+                // 收起來
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                text.dataset.zh = "查看更多公告";
+                text.dataset.en = "Show More Announcements";
+                text.dataset['zh-cn'] = "查看更多公告";
+                text.dataset.jp = "もっと見るお知らせ";
+                text.dataset.kr = "더 많은 공지 보기";
+            } else {
+                // 展開
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                text.dataset.zh = "收起公告";
+                text.dataset.en = "Show Less";
+                text.dataset['zh-cn'] = "收起公告";
+                text.dataset.jp = "お知らせを閉じる";
+                text.dataset.kr = "공지 접기";
+            }
+
+            // 觸發語言更新
+            if (window.updateLanguage) updateLanguage();
         });
 
 
