@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- [用戶自定義] 修改瀏覽器標籤頁標題 -->
+    <!-- 瀏覽器標籤頁標題 -->
     <title>TheFlyingTree Official Website</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* [修改] 引入 Quicksand 圓潤字體 */
+        
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@400;700&display=swap');
         
         .section-bg {
@@ -30,7 +30,7 @@
 
          /* 首頁背景 */
         #home {
-            /* [用戶自定義] 首頁背景圖片 */
+            /* 首頁背景圖片 */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.jsdelivr.net/gh/Dandelion206/TheFlyingTree-Official-Website@main/main_section_bg.png');
             background-size: cover;           /* 自動縮放填滿，不留白也不裁切過多 */
             background-position: center center; 
@@ -52,7 +52,7 @@
 
         /* Dancing Line 區塊背景 */
         #dancing-line {
-            /* [用戶自定義] Dancing Line 背景圖片 */
+            /* Dancing Line 背景圖片 */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn.jsdelivr.net/gh/Dandelion206/TheFlyingTree-Official-Website@main/dancing_line_bg.png');
              background-size: cover;           /* 自動縮放填滿，不留白也不裁切過多 */
             background-position: center center; 
@@ -63,7 +63,7 @@
 
         /* 鋼琴專區背景 */
         #piano-zone {
-            /* [用戶自定義] 鋼琴專區背景圖片 */
+            /* 鋼琴專區背景圖片 */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn.jsdelivr.net/gh/Dandelion206/TheFlyingTree-Official-Website@main/piano_zone_bg.png');
             background-size: cover;           /* 自動縮放填滿，不留白也不裁切過多 */
             background-position: center center; 
@@ -72,7 +72,7 @@
             min-height: 100vh;
         }
         body {
-            /* [修改] 應用圓潤字體 */
+            /* 字體 */
             font-family: 'Quicksand',  'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', sans-serif;
             background-color: #050b14;
             color: #e2e8f0;
@@ -87,7 +87,7 @@
             font-family:"思源黑體", 'Noto Sans TC', sans-serif;
         }
 
-        /* --- [功能 2] 88鍵鋼琴樣式 --- */
+        /* ---  88鍵鋼琴樣式 --- */
         #piano-container {
             position: fixed;
             top: 80px; /* 位於導航欄下方 */
@@ -232,7 +232,7 @@
             box-shadow: 100px 200px #fff, 300px 600px #fff, 500px 100px #fff;
         }
 
-        /* 動漫角色樣式 */
+        /* 角色樣式 */
         .mascot-container {
             position: fixed;
             bottom: 0;
@@ -281,12 +281,11 @@
             border-color: #94a3b8;
         }
 
-        /* 霓虹光暈效果 - 通用 */
         .neon-text {
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
         
-        /* [新增] 動漫角色呼吸動畫 */
+        /* 角色呼吸動畫 */
         .mascot-breath {
             animation: breath 4s ease-in-out infinite;
         }
@@ -320,7 +319,7 @@
     <!-- 流星層 -->
     <div id="meteor-layer" class="meteor-container"></div>
 
-    <!-- [功能 2] 88鍵鋼琴容器 -->
+    <!-- 88鍵鋼琴容器 -->
     <!-- JS 將在此處生成琴鍵 -->
     <div id="piano-container">
         <div id="piano-keys" class="piano-keys-wrapper"></div>
@@ -381,7 +380,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section (首頁封面) -->
+    <!-- 首頁封面 -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <div class="mb-4 text-amber-300 text-4xl flex justify-center gap-8 opacity-80">
@@ -390,7 +389,7 @@
                 <i class="fas fa-compact-disc floating-note" style="animation-delay: 0.5s;"></i>
             </div>
 
-            <!-- [修改] 標題漸變色改為青色到藍色 -->
+            <!-- 標題-->
             <h1 class="font-gaming text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-600 neon-text animate-pulse lang-text" data-zh="TheFlyingTree" data-en="TheFlyingTree">
                 TheFlyingTree
             </h1>
@@ -413,7 +412,7 @@
             
 
             <div class="flex justify-center gap-4">
-                <!-- [修改] 按鈕顏色改為橙色主題 -->
+                <!-- 按鈕顏色 -->
                 <a href="#piano-zone" class="px-8 py-3 border-2 border-amber-500 text-amber-400 rounded-full hover:bg-amber-500/20 transition duration-300 font-gaming tracking-widest font-bold lang-text" data-zh="觀看影片" data-en="Watch Videos" data-zh-cn="观看影片" data-ja="ビデオを見る" data-ko="동영상 보기">
                     觀看影片
                 </a>
@@ -421,7 +420,7 @@
         </div>
     </section>
 
-    <!-- [新增] 公告專區（橘紅主題，醒目又好看） -->
+    <!-- 公告專區 -->
 <section id="announcement-zone" class="py-20 relative bg-slate-900/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- 標題區 -->
@@ -595,11 +594,11 @@
     </div>
 </section>
 
-    <!-- [新增] 鋼琴影片專區 (藍色主題) -->
+    <!-- 鋼琴影片專區 (藍色主題) -->
     <section id="piano-zone" class="py-20 relative bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
-                <!-- [新增] 藍色標題 -->
+                <!--  藍色標題 -->
                 <h2 class="font-sans text-4xl font-bold text-blue-400 mb-4">PIANO COVERS</h2>
                 <div class="h-1 w-20 bg-blue-500 mx-auto rounded-full"></div>
                 <p class="mt-4 text-gray-400 font-medium lang-text" data-zh="遊戲原聲帶鋼琴改編" data-en="Game OST Piano Covers" data-zh-cn="游戏原声带钢琴改编" data-ja="ゲームOSTピアノカバー" data-ko="게임 OST 피아노 커버">遊戲原聲帶鋼琴改編</p>
@@ -761,7 +760,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 影片卡片 1 -->
-                <!-- [修改] 邊框與陰影改為橙色系 (border-orange-500/30) -->
+                <!-- 邊框與陰影 -->
                 <div class="bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-orange-500/30 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition duration-300 reveal group cursor-pointer">
                     <a href="https://www.youtube.com/watch?v=SydYDhAqtiY" target="_blank" rel="noopener" class="block">
                         <div class="relative aspect-video bg-black group-hover:opacity-90 transition">
@@ -777,7 +776,7 @@
                         </div>
                         <div class="p-6">
                             
-                            <!-- [修改] 標籤顏色 -->
+                            <!-- 標籤顏色 -->
                             <span class="text-xs font-bold text-orange-900 bg-orange-400 px-2 py-1 rounded-full uppercase">Fanmade Level</span>
                             <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="【滾動的天空】聯合飯製：太空之旅" data-en="Rolling Sky Fanmade/Edit Collab - Space Travel">【滾動的天空】聯合飯製：太空之旅</h3>
                         </div>
@@ -800,7 +799,7 @@
                         </div>
                         <div class="p-6">
                             
-                            <!-- [修改] 標籤顏色 -->
+                            <!-- 標籤顏色 -->
                             <span class="text-xs font-bold text-orange-900 bg-orange-400 px-2 py-1 rounded-full uppercase">Weekly Match</span>
                             <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="【滾動的天空】生日快樂周賽" data-en="Rolling Sky Happy Birthday Weekly Match">【滾動的天空】生日快樂周賽</h3>
                         </div>
@@ -823,7 +822,7 @@
                         </div>
                         <div class="p-6">
                             
-                            <!-- [修改] 標籤顏色 -->
+                            <!--  標籤顏色 -->
                             <h3 class="mt-3 text-xl font-bold text-white group-hover:text-orange-400 transition lang-text" data-zh="【滾動的天空】美食誘惑" data-en="Rolling Sky Level 49 - Delicacy Temptation">【滾動的天空】美食誘惑</h3>
                         </div>
                     </a>
@@ -831,7 +830,7 @@
         </div>
     </section>
 
-    <!-- 跳舞的線 區塊 (維持紫色) -->
+    <!-- 跳舞的線  -->
     <section id="dancing-line" class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
@@ -842,7 +841,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 影片卡片 1 -->
-                <!-- [修改] 邊框與陰影改為橙色系 (border-orange-500/30) -->
                 <div class="bg-slate-900/80 backdrop-blur rounded-2xl overflow-hidden border border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition duration-300 reveal group cursor-pointer">
                     <a href="https://www.youtube.com/watch?v=qHPipX3-IoI" target="_blank" rel="noopener" class="block">
                         <div class="relative aspect-video bg-black group-hover:opacity-90 transition">
@@ -858,7 +856,7 @@
                         </div>
                         <div class="p-6">
                             
-                            <!-- [修改] 標籤顏色 -->
+
                             <span class="text-xs font-bold text-purple-900 bg-purple-400 px-2 py-1 rounded-full uppercase">Soundtrack Mashup</span>
                             <h3 class="mt-3 text-xl font-bold text-white group-hover:text-purple-400 transition lang-text" data-zh="【跳舞的線混曲】戰殤 x The Despacito" data-en="Dancing Line Mashup - The War x The Despacito (Soundtrack)">【跳舞的線混曲】戰殤 x The Despacito</h3>
                         </div>
@@ -901,7 +899,7 @@
                         </div>
                         <div class="p-6">
                             
-                            <!-- [修改] 標籤顏色 -->
+
                             <h3 class="mt-3 text-xl font-bold text-white group-hover:text-purple-400 transition lang-text" data-zh="【跳舞的線】春節" data-en="Dancing Line - The Spring Festival">【跳舞的線】春節</h3>
                         </div>
                     </a>
@@ -937,7 +935,7 @@
     </footer>
 
 
-        <!-- [新增] 動漫角色看板娘 (底部固定) -->
+        <!-- 看板娘 (底部固定) -->
     <div class="fixed bottom-1 right-1 sm:right-4 md:right-10 z-40 pointer-events-none">
         <img src="https://cdn.jsdelivr.net/gh/Dandelion206/TheFlyingTree-Official-Website@main/site_waifu.png" 
              alt="site_waifu" 
@@ -963,7 +961,7 @@
             });
         });
 
-        /* --- [更新] 語言切換邏輯 --- */
+        /* --- 語言切換邏輯 --- */
         const desktopSelect = document.getElementById('desktop-lang-select');
         const mobileSelect = document.getElementById('mobile-lang-select');
         let currentLang = 'zh-tw'; // 預設繁體中文
@@ -1151,11 +1149,8 @@
                 bindKeyEvents(keyEl, i - (nextIsBlack ? 1 : 0)); // 修正索引回傳
                 whiteKeyCount++;
             }
-             // 修正上方的邏輯漏洞：上面的代碼有點亂，因為黑鍵處理複雜。
-             // 讓我們重寫一個更乾淨的生成邏輯：只生成白鍵，然後把黑鍵插在特定的白鍵之後
         }
 
-        // 清空並重新生成更穩定的版本
         pianoKeysContainer.innerHTML = '';
         whiteKeyCount = 0;
         
@@ -1378,3 +1373,4 @@
     </script>
 </body>
 </html>
+
